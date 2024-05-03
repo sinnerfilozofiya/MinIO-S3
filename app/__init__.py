@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 # Initialize Flask app
 app = Flask(__name__)
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB
 
 # Load environment variables
 load_dotenv(os.path.join(os.path.dirname(__file__), '../credentials/.env'))
