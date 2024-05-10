@@ -61,7 +61,10 @@ docker-compose --env-file credentials/.env up
 docker-compose --env-file credentials/.env up
 
 ```
-
+# File end-points
+```sh
+http://<minio-server>:9000/<bucket-name>/<file-name>
+```
 # how to deploy
 
 ## step 1: set the required permissions
