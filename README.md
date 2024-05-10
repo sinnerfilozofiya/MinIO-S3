@@ -83,7 +83,7 @@ server {
     server_name example.com;
 
     location / {
-        proxy_pass http://unix:/var/www/sockets/minios3.sock;  # Path to the Gunicorn Unix socket
+        proxy_pass http://127.0.0.1:5000;  # Change to the IP address and port of your Gunicorn server
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -92,6 +92,7 @@ server {
         proxy_read_timeout 60s;
     }
 }
+
 ```
 
 ## API Endpoint
