@@ -78,12 +78,12 @@ sudo chown www-data:www-data /var/www/sockets/minios3.sock
 ## step 2: configure NGINX for both MinIO and RADOS gateway
 
 ```conf
-erver {
+server {
     listen 80;
     server_name example.com;
 
     location / {
-        proxy_pass http://unix:/var/www/sockets/GateWay.sock;  # Path to the Gunicorn Unix socket
+        proxy_pass http://unix:/var/www/sockets/minios3.sock;  # Path to the Gunicorn Unix socket
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -92,7 +92,6 @@ erver {
         proxy_read_timeout 60s;
     }
 }
-
 ```
 
 ## API Endpoint
