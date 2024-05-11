@@ -13,8 +13,7 @@ RUN pip install -r Requirements.txt
 # Copy the current directory contents into the container at /app
 COPY . .
 
-# Expose port 5000 to the outside world
-EXPOSE 5000
 
-# Specify the command to run on container start
-CMD ["gunicorn", "--workers", "3", "--bind", "127.0.0.1:7000", "-m", "007", "wsgi:app"]
+
+ENV FLASK_APP=run.py
+CMD ["flask", "run", "--host", "0.0.0.0", "--port", "7000"]

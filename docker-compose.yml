@@ -17,10 +17,10 @@ services:
     
   web:
     build: .
-    ports:
-      - "7000:7000"
+    # ports:
+    #   - "7000:7000"
+    network_mode: "host"
     volumes:
       - .:/code
-      - /var/www/sockets:/var/www/sockets
       - /tmp:/tmp
     restart: always

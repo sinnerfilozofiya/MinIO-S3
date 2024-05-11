@@ -83,7 +83,7 @@ server {
     server_name example.com;
 
     location / {
-        proxy_pass http://127.0.0.1:5000;  # Change to the IP address and port of your Gunicorn server
+        proxy_pass http://127.0.0.1:7000;  # Change to the IP address and port of your Gunicorn server
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -128,23 +128,13 @@ This endpoint is designed for uploading files to an MinIO S3 bucket. It requires
 ```python
 import requests
 
-def upload_file_to_api(api_url, file_path, custom_filename=None):
-    with open(file_path, 'rb') as file:
-        filename = custom_filename if custom_filename else file.name
-        files = {'file': (filename, file)}
-        data = {'filename': filename}
+url = 'http://127.0.0.1:7000/upload'
+files = {'file': open('./photo.png', 'rb')}
 
-        response = requests.post(api_url, files=files, data=data)
-        return response
+response = requests.post(url, files=files)
 
-# Usage
-api_url = 'https://your.domain.address/upload'
-file_path = './photo.png'
-custom_filename = 'xxxxxx.png'
+print(response.text)
 
-response = upload_file_to_api(api_url, file_path, custom_filename)
-print(f"Status Code: {response.status_code}")
-print(f"Response: {response.json()}")
 ```
 
 ### Javascript
